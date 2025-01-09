@@ -1,9 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { Course } from '@/types/courses';
 import { courses } from '@/data/courses';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
 export default function NotesPage() {
   const router = useRouter();
@@ -12,75 +12,54 @@ export default function NotesPage() {
     router.push(`/notes/${course.id}`);
   };
 
+  const getHighlightClasses = (type: 'course' | 'book') => {
+    if (type === 'course') {
+      return 'hover:bg-gradient-to-br hover:from-berkeley-blue hover:to-berkeley-gold hover:ring-2 hover:ring-berkeley-blue/50 dark:hover:ring-berkeley-gold/50 group-hover:text-white';
+    }
+    return 'hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-purple-500/50 group-hover:text-white';
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-green-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-r from-amber-50/80 to-rose-50/80 dark:from-blue-950 dark:to-green-950 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Course & Book Notes</h1>
-          <p className="text-lg text-gray-600">Select a course or book to view notes</p>
+          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Course & Book Notes</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">Select a course or book to view notes</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course) => (
-            <button
+            <Card
               key={course.id}
+              className={`group cursor-pointer transition-all duration-300 hover:scale-[1.02]
+                       active:scale-[0.98] overflow-hidden ${getHighlightClasses(course.type)}`}
               onClick={() => handleCourseClick(course)}
-              className="group relative h-[280px] rounded-xl bg-white p-1 
-                       transition-all duration-300 hover:scale-[1.02]
-                       active:scale-[0.98]"
             >
-              {/* Gradient Border */}
-              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${course.borderGradient} opacity-0 
-                            group-hover:opacity-100 transition-opacity duration-300`} />
-              
-              {/* Card Content Container */}
-              <div className="relative h-full w-full rounded-lg bg-white p-5 overflow-hidden">
-                {/* Background Image with Gradient Overlay */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Image
-                    src={course.image}
-                    alt={course.title}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${course.gradientFrom} ${course.gradientTo} 
-                                mix-blend-multiply rounded-lg`} />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Type Tag - Centered */}
-                  <div className="flex justify-center mb-4">
-                    <div className="inline-block px-3 py-1 text-xs font-medium 
-                                bg-gray-100 text-gray-600 rounded-full">
-                      {course.type === 'course' ? 'Course' : 'Book'}
-                    </div>
-                  </div>
-
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-2">
-                    <h2 className="text-xl font-bold text-gray-900">
-                      {course.shortTitle}
-                    </h2>
-                    <span className="text-gray-400 group-hover:translate-x-1 transition-transform duration-300">
-                      →
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm line-clamp-3">
+              <div className="relative z-10 h-full transition-colors duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg transition-colors group-hover:text-inherit">
+                    {course.title}
+                  </CardTitle>
+                  {course.authors && (
+                    <CardDescription className="transition-colors group-hover:text-white/90">
+                      by {course.authors.join(', ')}
+                    </CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 transition-colors group-hover:text-white/80">
                     {course.description}
                   </p>
-
-                  {/* Authors (for books) */}
-                  {course.authors && (
-                    <div className="mt-auto pt-4 text-sm text-gray-500 border-t">
-                      by {course.authors.join(', ')}
-                    </div>
-                  )}
-                </div>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center px-3 py-1 text-xs font-medium 
+                               bg-white/10 rounded-full transition-colors group-hover:bg-white/20
+                               group-hover:text-white">
+                      {course.type.charAt(0).toUpperCase() + course.type.slice(1)}
+                    </span>
+                  </div>
+                </CardContent>
               </div>
-            </button>
+            </Card>
           ))}
         </div>
       </div>

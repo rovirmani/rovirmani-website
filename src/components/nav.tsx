@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "./theme-toggle"
 
 function MainNav() {
   const pathname = usePathname()
@@ -16,36 +17,36 @@ function MainNav() {
       label: "Notes",
     },
     {
-      href: "/about",
-      label: "About",
-    },
-    {
       href: "/projects",
       label: "Projects",
-    },
-    {
-      href: "/contact",
-      label: "Contact",
     },
   ]
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-gradient-to-r from-blue-50/80 to-green-50/80 backdrop-blur-sm border-b">
+    <nav className="fixed w-full top-0 z-50 bg-white dark:bg-gray-950 border-b dark:border-gray-800 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
       <div className="mx-auto max-w-screen-xl px-4">
-        <div className="flex h-16 items-center justify-center">
-          <div className="flex space-x-8">
+        <div className="flex h-16 items-center justify-center relative">
+          {/* Navigation Links */}
+          <div className="flex space-x-12">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === route.href ? "text-black" : "text-muted-foreground"
+                  pathname === route.href 
+                    ? "text-black dark:text-white" 
+                    : "text-muted-foreground dark:text-gray-400"
                 )}
               >
                 {route.label}
               </Link>
             ))}
+          </div>
+          
+          {/* Theme Toggle - Absolute positioned */}
+          <div className="absolute right-0">
+            <ThemeToggle />
           </div>
         </div>
       </div>
