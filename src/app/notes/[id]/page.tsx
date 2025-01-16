@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { NoteCollection } from '@/components/NoteCollection';
+import { NoteCollection } from '@/components/features/notes/note-collection';
 import { courses } from '@/data/courses';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";

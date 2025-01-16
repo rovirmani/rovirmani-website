@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Course } from '@/types/courses';
 import { courses } from '@/data/courses';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { NoteCollection } from "@/components/features/notes/note-collection";
 
 export default function NotesPage() {
   const router = useRouter();

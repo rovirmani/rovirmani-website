@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { ThemeToggle } from "./theme-toggle"
+import { ThemeToggle } from "@/components/theme"
+import { SearchBar } from "@/components/shared/search-bar"
 
 function MainNav() {
   const pathname = usePathname()
@@ -25,7 +26,7 @@ function MainNav() {
   return (
     <nav className="fixed w-full top-0 z-50 bg-white dark:bg-gray-950 border-b dark:border-gray-800 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
       <div className="mx-auto max-w-screen-xl px-4">
-        <div className="flex h-16 items-center justify-center relative">
+        <div className="flex h-16 items-center justify-between">
           {/* Navigation Links */}
           <div className="flex space-x-12">
             {routes.map((route) => (
@@ -44,8 +45,9 @@ function MainNav() {
             ))}
           </div>
           
-          {/* Theme Toggle - Absolute positioned */}
-          <div className="absolute right-0">
+          {/* Theme Toggle and Search Bar */}
+          <div className="flex items-center space-x-4">
+            <SearchBar />
             <ThemeToggle />
           </div>
         </div>

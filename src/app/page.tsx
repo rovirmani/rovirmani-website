@@ -3,8 +3,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { GradientWrapper } from "@/components/layout/gradient-wrapper"
-import { SocialLinks } from "@/components/social-links"
-import { SkillsList } from "@/components/skills-list"
+import { SocialLinks } from "@/components/shared/social-links"
+import { SkillsList } from "@/components/features/skills/skills-list"
+import { ProjectsGrid } from "@/components/features/projects/projects-grid"
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="flex flex-col items-center text-center mb-16">
         <h1 className="text-4xl font-bold tracking-tight mb-4 text-zinc-900 dark:text-zinc-100">
-          Hey, I'm Rohan 👋
+          Hey, I'm Rohan 
         </h1>
         <p className="max-w-2xl text-zinc-600 dark:text-zinc-400 mb-8">
           I'm a student at UC Berkeley studying Computer Science.
@@ -23,12 +24,30 @@ export default function Home() {
       {/* Main Content */}
       <Tabs defaultValue="about" className="max-w-3xl mx-auto mb-16">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="about">About</TabsTrigger>
-          <TabsTrigger value="experience">Experience</TabsTrigger>
-          <TabsTrigger value="skills">Skills</TabsTrigger>
+          <TabsTrigger 
+            value="about"
+            className="transition-all duration-200 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-100 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80"
+          >
+            About
+          </TabsTrigger>
+          <TabsTrigger 
+            value="experience"
+            className="transition-all duration-200 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-100 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80"
+          >
+            Experience
+          </TabsTrigger>
+          <TabsTrigger 
+            value="skills"
+            className="transition-all duration-200 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-100 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80"
+          >
+            Skills
+          </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="about">
+        <TabsContent 
+          value="about"
+          className="mt-6 space-y-6 animate-in slide-in-from-bottom duration-300"
+        >
           <Card>
             <CardHeader>
               <CardTitle>About Me</CardTitle>
@@ -47,7 +66,10 @@ export default function Home() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="experience">
+        <TabsContent 
+          value="experience"
+          className="mt-6 space-y-6 animate-in slide-in-from-bottom duration-300"
+        >
           <Card>
             <CardHeader>
               <CardTitle>Experience</CardTitle>
@@ -60,14 +82,17 @@ export default function Home() {
                   <p className="text-sm text-zinc-600 dark:text-zinc-400">Company Name • 2023-Present</p>
                   <p className="mt-2 text-zinc-600 dark:text-zinc-400">
                     Description of your role and achievements
-                  </p>
+                  </p>  
                 </div>
               </div>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="skills">
+        <TabsContent 
+          value="skills"
+          className="mt-6 space-y-6 animate-in slide-in-from-bottom duration-300"
+        >
           <Card>
             <CardHeader>
               <CardTitle>Skills & Technologies</CardTitle>

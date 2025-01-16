@@ -1,7 +1,9 @@
-"use client"
+'use client'
 
 import * as React from "react"
-import { Calculator, Calendar, CreditCard, Settings, Smile, User } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { Search } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,9 +14,13 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import { Button } from "./ui/button"
+import { cn } from "@/lib/utils"
+import { type ButtonProps } from "@/components/ui/button"
 
-export function CommandMenu() {
+type CommandMenuProps = ButtonProps
+
+export function CommandMenu({ className, ...props }: CommandMenuProps) {
+  const router = useRouter()
   const [open, setOpen] = React.useState(false)
 
   React.useEffect(() => {
@@ -24,54 +30,81 @@ export function CommandMenu() {
         setOpen((open) => !open)
       }
     }
+
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  const runCommand = React.useCallback((command: () => unknown) => {
+    setOpen(false)
+    command()
   }, [])
 
   return (
     <>
       <Button
         variant="outline"
-        className="relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        size="sm"
+        className={cn(
+          "relative h-9 w-[320px] flex items-center justify-between px-3 text-sm text-muted-foreground",
+          className
+        )}
         onClick={() => setOpen(true)}
+        {...props}
       >
-        <span className="hidden lg:inline-flex">Search...</span>
-        <span className="inline-flex lg:hidden">Search...</span>
-        <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
-          <span className="text-xs">⌘</span>K
-        </kbd>
+        <div className="flex items-center gap-2">
+          <Search className="h-4 w-4" />
+          <span>Search</span>
+        </div>
+        <div className="flex items-center border rounded h-5 px-1.5 text-[10px] bg-muted">⌘K</div>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
+        <CommandList className="max-h-[300px]">
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <Calendar className="mr-2 h-4 w-4" />
-              <span>Notes</span>
+          <CommandGroup heading="Pages">
+            <CommandItem
+              onSelect={() => {
+                runCommand(() => router.push("/"))
+              }}
+            >
+              Home
+              <CommandShortcut>⌘H</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <Smile className="mr-2 h-4 w-4" />
-              <span>Projects</span>
+            <CommandItem
+              onSelect={() => {
+                runCommand(() => router.push("/notes"))
+              }}
+            >
+              Notes
+              <CommandShortcut>⌘N</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <Calculator className="mr-2 h-4 w-4" />
-              <span>Experience</span>
+            <CommandItem
+              onSelect={() => {
+                runCommand(() => router.push("/projects"))
+              }}
+            >
+              Projects
+              <CommandShortcut>⌘P</CommandShortcut>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Links">
-            <CommandItem>
-              <User className="mr-2 h-4 w-4" />
-              <span>GitHub</span>
+            <CommandItem
+              onSelect={() => {
+                runCommand(() => window.open("https://github.com/rovirmani", "_blank"))
+              }}
+            >
+              GitHub
+              <CommandShortcut>⌘G</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>LinkedIn</span>
-            </CommandItem>
-            <CommandItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
+            <CommandItem
+              onSelect={() => {
+                runCommand(() => window.open("https://linkedin.com/in/rohan-virmani", "_blank"))
+              }}
+            >
+              LinkedIn
+              <CommandShortcut>⌘L</CommandShortcut>
             </CommandItem>
           </CommandGroup>
         </CommandList>
