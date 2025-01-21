@@ -10,7 +10,22 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Rohan Virmani",
-  description: "Personal website and digital garden",
+  description: "Personal website and a collection of my thoughts",
+  authors: [{ name: "Rohan Virmani" }],
+  metadataBase: new URL("https://rovirmani.dev"),
+  openGraph: {
+    title: "Rohan Virmani",
+    description: "Personal website and a collection of my thoughts",
+    url: "https://rovirmani.dev",
+    siteName: "Rohan Virmani",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rohan Virmani",
+    description: "Personal website and a collection of my thoughts",
+  },
 }
 
 export default function RootLayout({

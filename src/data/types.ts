@@ -1,12 +1,12 @@
 export interface Course {
   id: string;
-  type: 'course' | 'book';
+  type: 'course';
   title: string;
   shortTitle: string;
   description: string;
-  authors?: string[];
+  authors: string[];
   gradientFrom: string;
   gradientTo: string;
   borderGradient: string;
-  image: string;
+  image?: string;
 }

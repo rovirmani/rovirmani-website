@@ -1,24 +1,24 @@
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import { Course } from '@/types/courses';
-import { courses } from '@/data/courses';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { NoteCollection } from "@/components/features/notes/note-collection";
+import { useRouter } from 'next/navigation'
+import { Course } from '@/data/types'
+import { courses } from '@/data/courses'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { NoteList } from "@/components/features/notes/NoteList"
 
 export default function NotesPage() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleCourseClick = (course: Course) => {
-    router.push(`/notes/${course.id}`);
-  };
+    router.push(`/notes/${course.id}`)
+  }
 
   const getHighlightClasses = (type: 'course' | 'book') => {
     if (type === 'course') {
-      return 'hover:bg-gradient-to-br hover:from-berkeley-blue hover:to-berkeley-gold hover:ring-2 hover:ring-berkeley-blue/50 dark:hover:ring-berkeley-gold/50 group-hover:text-white';
+      return 'hover:bg-gradient-to-br hover:from-berkeley-blue hover:to-berkeley-gold hover:ring-2 hover:ring-berkeley-blue/50 dark:hover:ring-berkeley-gold/50 group-hover:text-white'
     }
-    return 'hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-purple-500/50 group-hover:text-white';
-  };
+    return 'hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-purple-500/50 group-hover:text-white'
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-amber-50/80 to-rose-50/80 dark:from-blue-950 dark:to-green-950 pt-20">
@@ -65,5 +65,5 @@ export default function NotesPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

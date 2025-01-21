@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { useParams, useRouter } from 'next/navigation';
-import { NoteCollection } from '@/components/features/notes/note-collection';
-import { courses } from '@/data/courses';
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { useParams, useRouter } from 'next/navigation'
+import { NoteList } from '@/components/features/notes/NoteList'
+import { courses } from '@/data/courses'
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { ArrowLeft } from "lucide-react"
 
 export default function NotePage() {
-  const router = useRouter();
-  const params = useParams();
-  const id = params.id as string;
+  const router = useRouter()
+  const params = useParams()
+  const courseId = params?.id as string
 
-  const course = courses.find(c => c.id === id);
+  const course = courses.find(c => c.id === courseId)
 
   if (!course) {
     return (
@@ -35,7 +35,7 @@ export default function NotePage() {
           </Card>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -67,15 +67,14 @@ export default function NotePage() {
               </CardContent>
             )}
           </Card>
-          <NoteCollection
+          <NoteList
             type={course.type}
             title={course.title}
             description={course.description}
             authors={course.authors}
-            sections={[]} // TODO: Add actual sections data
           />
         </div>
       </div>
     </div>
-  );
+  )
 }
