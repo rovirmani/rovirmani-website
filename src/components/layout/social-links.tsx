@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import EmailIcon from '@mui/icons-material/Email'
 import XIcon from '@mui/icons-material/X'
 import Link from "next/link"
-import { SvgIconProps } from "@mui/material"
+import type { SVGProps } from 'react'
 
 const SOCIAL_LINKS = [
   {

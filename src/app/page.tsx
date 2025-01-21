@@ -3,7 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { GradientWrapper } from "@/components/layout/gradient-wrapper"
-import { SocialLinks } from "@/components/shared/social-links"
+import { SocialLinks } from "@/components/layout/social-links"
 import { SkillsList } from "@/components/features/skills/skills-list"
 import { ProjectsGrid } from "@/components/features/projects/projects-grid"
 

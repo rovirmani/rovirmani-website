@@ -1,6 +1,6 @@
 'use client'
 
-import { SocialLinks } from "@/components/shared/social-links"
+import { SocialLinks } from "./social-links"
 
 export default function Footer() {
   return (

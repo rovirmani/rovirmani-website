@@ -4,7 +4,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme"
-import { SearchBar } from "@/components/shared/search-bar"
 
 function MainNav() {
   const pathname = usePathname()
@@ -45,9 +44,8 @@ function MainNav() {
             ))}
           </div>
           
-          {/* Theme Toggle and Search Bar */}
+          {/* Theme Toggle */}
           <div className="flex items-center space-x-4">
-            <SearchBar />
             <ThemeToggle />
           </div>
         </div>
