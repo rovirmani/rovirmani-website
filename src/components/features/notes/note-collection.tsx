@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { cn, toggleSet } from '@/lib/utils';
-import { Course } from '@/data/courses';
+import { Course } from '@/types/courses';
 import { Section } from '@/types/notes';
 
 interface NoteCollectionProps extends Pick<Course, 'type' | 'title' | 'description' | 'authors'> {
