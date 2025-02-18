@@ -1,11 +1,33 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { NoteList } from '@/components/features/notes/NoteList'
 import { courses } from '@/data/courses'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { ArrowLeft } from "lucide-react"
+import { ErrorBoundary } from '@/components/error-boundary'
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const course = courses.find(c => c.id === params.id)
+  
+  if (!course) {
+    return {
+      title: 'Note Not Found',
+      description: 'The requested note could not be found.'
+    }
+  }
+
+  return {
+    title: `${course.title} Notes`,
+    description: course.description,
+    openGraph: {
+      title: `${course.title} Notes`,
+      description: course.description,
+    },
+  }
+}
 
 export default function NotePage() {
   const router = useRouter()
