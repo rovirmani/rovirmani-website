@@ -13,12 +13,16 @@ function MainNav() {
       label: "Home",
     },
     {
-      href: "/notes",
-      label: "Notes",
-    },
-    {
       href: "/projects",
       label: "Projects",
+    },
+    {
+      href: "/writing",
+      label: "Writing",
+    },
+    {
+      href: "/notes",
+      label: "Notes",
     },
   ]
 
@@ -27,7 +31,8 @@ function MainNav() {
       <div className="mx-auto max-w-screen-xl px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Navigation Links */}
-          <div className="flex space-x-12">
+          <div className="flex-1" /> {/* Left spacer */}
+          <div className="flex justify-center space-x-12">
             {routes.map((route) => (
               <Link
                 key={route.href}
@@ -45,7 +50,7 @@ function MainNav() {
           </div>
           
           {/* Theme Toggle */}
-          <div className="flex items-center space-x-4">
+          <div className="flex-1 flex justify-end">
             <ThemeToggle />
           </div>
         </div>
