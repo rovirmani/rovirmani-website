@@ -8,46 +8,31 @@ import { ThemeToggle } from "@/components/theme"
 function MainNav() {
   const pathname = usePathname()
   const routes = [
-    {
-      href: "/",
-      label: "Home",
-    },
-    {
-      href: "/notes",
-      label: "Notes",
-    },
-    {
-      href: "/projects",
-      label: "Projects",
-    },
+    { href: "/", label: "Home" },
+    { href: "/projects", label: "Projects" },
+    { href: "/writing", label: "Writing" },
+    { href: "/notes", label: "Notes" },
   ]
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-white dark:bg-gray-950 border-b dark:border-gray-800 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
-      <div className="mx-auto max-w-screen-xl px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Navigation Links */}
-          <div className="flex space-x-12">
-            {routes.map((route) => (
-              <Link
-                key={route.href}
-                href={route.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === route.href 
-                    ? "text-black dark:text-white" 
-                    : "text-muted-foreground dark:text-gray-400"
-                )}
-              >
-                {route.label}
-              </Link>
-            ))}
-          </div>
-          
-          {/* Theme Toggle */}
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-          </div>
+    <nav className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-md">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="flex h-14 items-center justify-center gap-8">
+          {routes.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className={cn(
+                "text-sm transition-colors hover:text-foreground",
+                pathname === route.href
+                  ? "text-foreground font-medium"
+                  : "text-muted-foreground"
+              )}
+            >
+              {route.label}
+            </Link>
+          ))}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

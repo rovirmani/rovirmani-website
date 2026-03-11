@@ -1,68 +1,41 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
-import { Course } from '@/data/types'
-import { courses } from '@/data/courses'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import { NoteList } from "@/components/features/notes/NoteList"
+import Link from "next/link"
+import { courses } from "@/data/courses"
 
 export default function NotesPage() {
-  const router = useRouter()
-
-  const handleCourseClick = (course: Course) => {
-    router.push(`/notes/${course.id}`)
-  }
-
-  const getHighlightClasses = (type: 'course' | 'book') => {
-    if (type === 'course') {
-      return 'hover:bg-gradient-to-br hover:from-berkeley-blue hover:to-berkeley-gold hover:ring-2 hover:ring-berkeley-blue/50 dark:hover:ring-berkeley-gold/50 group-hover:text-white'
-    }
-    return 'hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-purple-500/50 group-hover:text-white'
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-r from-amber-50/80 to-rose-50/80 dark:from-blue-950 dark:to-green-950 pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Course & Book Notes</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">Select a course or book to view notes</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course) => (
-            <Card
-              key={course.id}
-              className={`group cursor-pointer transition-all duration-300 hover:scale-[1.02]
-                       active:scale-[0.98] overflow-hidden ${getHighlightClasses(course.type)}`}
-              onClick={() => handleCourseClick(course)}
-            >
-              <div className="relative z-10 h-full transition-colors duration-300">
-                <CardHeader>
-                  <CardTitle className="text-lg transition-colors group-hover:text-inherit">
-                    {course.title}
-                  </CardTitle>
-                  {course.authors && (
-                    <CardDescription className="transition-colors group-hover:text-white/90">
-                      by {course.authors.join(', ')}
-                    </CardDescription>
-                  )}
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 transition-colors group-hover:text-white/80">
-                    {course.description}
+    <div className="mx-auto max-w-2xl px-6 py-16">
+      <h1 className="text-3xl font-bold tracking-tight mb-2">Notes</h1>
+      <p className="text-muted-foreground mb-12">
+        Course and book notes from things I&apos;ve studied.
+      </p>
+
+      <div className="space-y-6">
+        {courses.map((course) => (
+          <Link
+            key={course.id}
+            href={`/notes/${course.id}`}
+            className="group block"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-sm font-medium group-hover:text-foreground transition-colors">
+                  {course.shortTitle}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {course.description}
+                </p>
+                {course.authors && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {course.authors.join(", ")}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center px-3 py-1 text-xs font-medium 
-                               bg-white/10 rounded-full transition-colors group-hover:bg-white/20
-                               group-hover:text-white">
-                      {course.type.charAt(0).toUpperCase() + course.type.slice(1)}
-                    </span>
-                  </div>
-                </CardContent>
+                )}
               </div>
-            </Card>
-          ))}
-        </div>
+              <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded flex-shrink-0 mt-0.5">
+                {course.type}
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   )
