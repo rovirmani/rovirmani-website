@@ -4,40 +4,56 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --background: 42 40% 88%;
+    --foreground: 30 12% 14%;
+    --card: 42 35% 85%;
+    --card-foreground: 30 12% 14%;
+    --popover: 42 35% 85%;
+    --popover-foreground: 30 12% 14%;
+    --primary: 30 12% 14%;
+    --primary-foreground: 42 40% 88%;
+    --secondary: 40 28% 82%;
+    --secondary-foreground: 30 12% 14%;
+    --muted: 40 28% 82%;
+    --muted-foreground: 30 8% 40%;
+    --accent: 40 28% 82%;
+    --accent-foreground: 30 12% 14%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 42 40% 88%;
+    --border: 40 22% 78%;
+    --input: 40 22% 78%;
+    --ring: 30 12% 14%;
     --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 83%;
   }
 }
 
-body {
-  @apply bg-gradient-to-r from-blue-50 to-green-50;
-}
-
-@layer utilities {
-  .nav-gradient {
-    background: linear-gradient(
-      to right,
-      rgba(239, 246, 255, 0.8),
-      rgba(236, 253, 245, 0.8)
-    );
-    backdrop-filter: blur(8px);
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

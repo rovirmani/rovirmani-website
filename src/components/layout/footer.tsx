@@ -1,49 +1,46 @@
 'use client'
 
-import { SocialLinks } from "./social-links"
+import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="mt-auto w-full border-t border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm">
-      <div className="container flex items-center justify-center h-16 text-sm text-zinc-600 dark:text-zinc-400">
-        <p>
-          Built with{" "}
-          <a 
-            href="https://nextjs.org" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-          >
-            Next.js
-          </a>
-          ,{" "}
-          <a 
-            href="https://tailwindcss.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-          >
-            Tailwind
-          </a>
-          , and{" "}
-          <a 
-            href="https://ui.shadcn.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-          >
-            shadcn/ui
-          </a>
-          .{" "}
-          <a 
-            href="https://github.com/rovirmani/rovirmani" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-          >
-            Source code
-          </a>
-        </p>
+    <footer className="border-t border-border/40 py-8">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <p>Rohan Virmani</p>
+          <div className="flex gap-6">
+            <Link
+              href="https://github.com/rovirmani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              GitHub
+            </Link>
+            <Link
+              href="https://linkedin.com/in/rohan-virmani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              LinkedIn
+            </Link>
+            <Link
+              href="https://x.com/rovirmani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              X
+            </Link>
+            <Link
+              href="mailto:ro.han@berkeley.edu"
+              className="hover:text-foreground transition-colors"
+            >
+              Email
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )
