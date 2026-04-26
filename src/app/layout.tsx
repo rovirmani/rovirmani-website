@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google"
-import { Analytics } from "@vercel/analytics/react"
+import Script from "next/script"
 import MainNav from "@/components/layout/nav"
 import Footer from "@/components/layout/footer"
 import Providers from "@/components/layout/providers"
 import "./globals.css"
+
+const cfAnalyticsToken = process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -42,7 +44,14 @@ export default function RootLayout({
           </main>
           <Footer />
         </Providers>
-        <Analytics />
+        {cfAnalyticsToken && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${cfAnalyticsToken}"}`}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   )
