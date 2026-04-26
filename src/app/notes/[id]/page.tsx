@@ -21,7 +21,7 @@ export default function NotePage() {
           <Card className="max-w-lg mx-auto">
             <CardHeader className="text-center">
               <CardTitle>Note not found</CardTitle>
-              <CardDescription>The note you're looking for doesn't exist</CardDescription>
+              <CardDescription>The note you&apos;re looking for doesn&apos;t exist</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
               <Button
@@ -68,7 +68,6 @@ export default function NotePage() {
             )}
           </Card>
           <NoteList
-            type={course.type}
             title={course.title}
             description={course.description}
             authors={course.authors}

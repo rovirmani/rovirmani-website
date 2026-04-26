@@ -5,11 +5,11 @@ import { cn, toggleSet } from '@/lib/utils'
 import { Course } from '@/data/types'
 import { Section } from './types'
 
-interface NoteListProps extends Pick<Course, 'type' | 'title' | 'description' | 'authors'> {
+interface NoteListProps extends Pick<Course, 'title' | 'description' | 'authors'> {
   sections?: Section[]
 }
 
-export function NoteList({ type, title, description, authors, sections = [] }: NoteListProps) {
+export function NoteList({ title, description, authors, sections = [] }: NoteListProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set())
 
   const toggleSection = (sectionTitle: string) => {
@@ -31,7 +31,7 @@ export function NoteList({ type, title, description, authors, sections = [] }: N
 
       {/* Sections */}
       <div className="space-y-4">
-        {sections.map((section, index) => (
+        {sections.map((section) => (
           <div
             key={section.title}
             className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
@@ -76,7 +76,7 @@ export function NoteList({ type, title, description, authors, sections = [] }: N
                 )}
                 {section.subsections && section.subsections.length > 0 && (
                   <div className="mt-4 space-y-4">
-                    {section.subsections.map((subsection: Section, subIndex: number) => (
+                    {section.subsections.map((subsection: Section) => (
                       <div key={subsection.title} className="pl-4 border-l-2 border-gray-200">
                         <h3 className="text-sm font-medium text-gray-900">
                           {subsection.title}
